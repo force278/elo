@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Тут мы сразу добавим наши фирменные цвета для Face ELO */
+@theme {
+  --color-elo-bg: #121212;
+  --color-elo-card: #1E1E1E;
+  --color-elo-accent: #06B6D4;
+}
+
+body {
+  background-color: var(--color-elo-bg);
+  color: white;
+  margin: 0;
+}
