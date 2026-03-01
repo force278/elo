@@ -22,36 +22,86 @@ const MOCK_DUEL = {
 };
 
 export const DuelPage = () => {
-  const [duelData] = useState(MOCK_DUEL);
+  const [duelData, setDuelData] = useState(MOCK_DUEL);
+  // Состояние: null (еще не голосовали), 1 (выбрали первого), 2 (выбрали второго)
+  const [votedFor, setVotedFor] = useState<1 | 2 | null>(null);
 
+  // Функция обработки клика по фото
+  const handleVote = (playerNum: 1 | 2) => {
+    // Если уже проголосовали - игнорируем клики, ждем смены фото
+    if (votedFor !== null) return;
+
+    // Устанавливаем победителя (запускаются CSS анимации)
+    setVotedFor(playerNum);
+
+    // Эмулируем задержку сети и загрузку следующей пары
+    setTimeout(() => {
+      // Здесь в будущем будет запрос к вашему API на Golang
+      console.log(`Голос засчитан за игрока ${playerNum}`);
+      
+      // Сбрасываем состояние (убираем анимации)
+      setVotedFor(null);
+      
+      // Пока просто меняем местами фото для наглядности (чтобы видеть изменения)
+      setDuelData(prev => ({
+        player1: prev.player2,
+        player2: prev.player1
+      }));
+    }, 1500); // Ждем 1.2 секунды, чтобы пользователь увидел анимацию
+  };
+
+  
   return (
-    // Используем классы через styles.имяКласса
     <div className={styles.pageContainer}>
       <Header />
 
       {/* --- Карточка 1 (Верхняя) --- */}
-      <div className={styles.card}>
+      <div 
+        className={`${styles.card} ${votedFor === 1 ? styles.winner : ''} ${votedFor === 2 ? styles.loser : ''}`}
+        onClick={() => handleVote(1)}
+      >
         <img src={duelData.player1.photoUrl} alt="Игрок 1" className={styles.photo} />
         <div className={styles.gradientBottom} />
+        
+        {/* Надпись VIBE (появляется только при победе) */}
+        <div className={`${styles.vibeOverlay} ${votedFor === 1 ? styles.showVibe : ''}`}>
+          Vibe!
+        </div>
+
+        {/* НОВОЕ: Надпись MOGGED (появляется только при поражении) */}
+        <div className={`${styles.moggedOverlay} ${votedFor === 2 ? styles.showMogged : ''}`}>
+          Mogged
+        </div>
+
         <div className={styles.userInfo}>
           <h2 className={styles.userName}>{duelData.player1.name}</h2>
           <p className={styles.userCity}>📍 {duelData.player1.city}</p>
         </div>
       </div>
 
-      {/* --- Слайдер (по центру) --- */}
-      <div className={styles.vibeSliderStub}>
-        <div className={styles.vibeSliderBody}>
-            <span className={`${styles.vibeText} ${styles.vibeBlue}`}>Vibe</span>
-            <span className={styles.vsText}>VS</span>
-            <span className={`${styles.vibeText} ${styles.vibePurple}`}>Vibe</span>
-        </div>
+      {/* --- Статический кружок VS --- */}
+      <div className={`${styles.vsBadge} ${votedFor !== null ? styles.hidden : ''}`}>
+        VS
       </div>
 
       {/* --- Карточка 2 (Нижняя) --- */}
-      <div className={styles.card}>
+      <div 
+        className={`${styles.card} ${votedFor === 2 ? styles.winner : ''} ${votedFor === 1 ? styles.loser : ''}`}
+        onClick={() => handleVote(2)}
+      >
         <img src={duelData.player2.photoUrl} alt="Игрок 2" className={styles.photo} />
         <div className={styles.gradientBottom} />
+        
+        {/* Надпись VIBE */}
+        <div className={`${styles.vibeOverlay} ${votedFor === 2 ? styles.showVibe : ''}`}>
+          Vibe!
+        </div>
+
+        {/* НОВОЕ: Надпись MOGGED (появляется только при поражении) */}
+        <div className={`${styles.moggedOverlay} ${votedFor === 1 ? styles.showMogged : ''}`}>
+          Mogged
+        </div>
+
         <div className={styles.userInfo}>
           <h2 className={styles.userName}>{duelData.player2.name}</h2>
           <p className={styles.userCity}>📍 {duelData.player2.city}</p>
