@@ -1,0 +1,99 @@
+/* src/pages/DuelPage.module.css */
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: calc(100vh - 64px);
+    /* Вычитаем высоту меню */
+}
+
+.card {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    background-color: #121212;
+    overflow: hidden;
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Фото заполняет блок без искажений */
+}
+
+.gradientBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    pointer-events: none;
+}
+
+.userInfo {
+    position: absolute;
+    bottom: 24px;
+    left: 16px;
+    right: 16px;
+    color: white;
+}
+
+.userName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.userCity {
+    font-size: 0.875rem;
+    color: #d1d5db;
+    margin-top: 4px;
+}
+
+/* Заглушка слайдера по центру */
+.vibeSliderStub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    padding: 0 32px;
+    pointer-events: none;
+}
+
+.vibeSliderBody {
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid #4b5563;
+    border-radius: 9999px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.vibeText {
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.vibeBlue {
+    color: #06B6D4;
+}
+
+.vibePurple {
+    color: #A855F7;
+}
+
+.vsText {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+}

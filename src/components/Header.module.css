@@ -1,0 +1,87 @@
+/* src/components/Header.module.css */
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    pointer-events: none;
+    /* Пропускаем клики сквозь саму шапку */
+}
+
+/* Общие стили для всех интерактивных элементов в шапке */
+.headerItem {
+    pointer-events: auto;
+    /* Включаем клики для кнопок/плашек */
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    /* Полностью круглые края */
+}
+
+/* Кнопка настроек */
+.settingsBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.25rem;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.settingsBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Плашка с лигой (по центру) */
+.leagueBadge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+.leagueIcon {
+    font-size: 0.875rem;
+}
+
+.leagueText {
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+/* Плашка с энергией (справа) */
+.energyBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.energyIcon {
+    color: #fbbf24;
+    /* yellow-400 */
+    font-size: 0.875rem;
+}
+
+.energyText {
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+}

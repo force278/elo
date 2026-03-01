@@ -1,17 +1,29 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { DuelPage } from './pages/DuelPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { LeaderboardPage } from './pages/LeaderboardPage';
+import { BottomNav } from './components/BottomNav';
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-8 tracking-tight">
-        Face ELO MVP
-      </h1>
-      
-      <button className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-full transition-transform transform hover:scale-105 shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-        Начать дуэль ⚡
-      </button>
-    </div>
-  )
+    // BrowserRouter - оборачивает всё приложение, включая роутинг
+    <BrowserRouter>
+      {/* Главный контейнер (Mobile First: ограничиваем ширину на ПК) */}
+      <div className="flex flex-col min-h-screen bg-elo-bg mx-auto max-w-md w-full relative shadow-2xl overflow-hidden">
+        
+        {/* Routes - здесь меняются страницы */}
+        <Routes>
+          <Route path="/" element={<DuelPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
+        </Routes>
+
+        {/* Наше нижнее меню (оно вне Routes, поэтому видно всегда!) */}
+        <BottomNav />
+        
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

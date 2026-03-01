@@ -1,0 +1,64 @@
+/* src/components/BottomNav.module.css */
+
+/* src/components/BottomNav.module.css */
+
+.nav {
+    width: 100%;
+    background-color: #1E1E1E;
+    /* elo-card */
+    border-top: 1px solid #374151;
+    /* gray-800 */
+
+    /* 
+    Магия для iOS: 
+    Мы делаем нижний отступ равным размеру системной полоски (safe-area-inset-bottom).
+    Если этой полоски нет (например, на Android или на ПК), отступ будет 0.
+  */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    z-index: 50;
+    flex-shrink: 0;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 64px;
+    max-width: 448px;
+    /* max-w-md */
+    margin: 0 auto;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    color: #6b7280;
+    /* Неактивный серый */
+}
+
+.link:hover {
+    color: #d1d5db;
+    /* Светло-серый при наведении */
+}
+
+.linkActive {
+    color: #06B6D4;
+    /* Активный бирюзовый (elo-accent) */
+}
+
+.icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.label {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 500;
+}
